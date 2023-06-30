@@ -6,40 +6,40 @@ var uppercase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"
 var lowercase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var special = ["!", "#", "$", "%", "&","*", "?", "@", "^"];
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
 var generateBtn = document.querySelector("#generate");
-
-function generatePassword(){
-  // prompt user for password criteria
-  let length = window.prompt("How many characters would you like your password to contain?");
-  if (length < 8 || length > 128){
-    alert("Password must be between 8 and 128 characters");
-    }
-    if (length > 8 || length < 128){
-      confirm ("Would you like to include lowercase letters?");
-    }
-  }
 
 // Write password to the #password input
 function writePassword() {
     var answers = getPrompts();
+    var passwordText = document.querySelector("#password");
 
     if (answers) {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-    passwordText.value = password;
+    var yourPassword = generatePassword();
+    passwordText.value = yourPassword;
+  } else {
+    passwordText.value = "";
   }
 }
-  
-  function getPrompts(){
+
+  // Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+function generatePassword(){
+    var password = "";
+    for(var index = 0; index < length; index++){
+      var randomize = Math.floor(Math.random() * choices.length);
+      password = password + choices[randomize]
+    }
+    return password
+}
+
+function getPrompts(){
     choices = [];
     length = parseInt(prompt("How many characters would you like your password to contain?"));
     
     if(isNan(length) || length < 8 || length > 128) {
-    alert("Must be a number between 8 - 128.");
-    return false
+      alert("Must be a number between 8 - 128.");
+      return false;
     }
 
     if (confirm("Do you want your password to contain lowercase characters?")){
