@@ -24,21 +24,38 @@ function generatePassword(){
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+    var answers = getPrompts();
 
-  passwordText.value = password;
+    if (answers) {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  }
 }
-
+  
   function getPrompts(){
+    choices = [];
     length = parseInt(prompt("How many characters would you like your password to contain?"));
     
     if(isNan(length) || length < 8 || length > 128) {
     alert("Must be a number between 8 - 128.");
     return false
     }
-    
+
     if (confirm("Do you want your password to contain lowercase characters?")){
       choices = choices.concat(lowercase);
     }
+
+    if (confirm("Do you want your password to contain uppercase characters?")){
+      choices = choices.concat(uppercase);
+    }
+    
+    if (confirm("Do you want your password to contain special characters?")){
+      choices = choices.concat(special);
+    }
+
+    if (confirm("Do you want your password to contain numbers?")){
+      choices = choices.concat(numArrary);
+    }
+    return true;
 }
