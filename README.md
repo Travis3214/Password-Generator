@@ -7,7 +7,7 @@ In this assignment we were asked to create the JavaScript logic to generate a pa
 N/A
 
 ## Usage
-
+https://travis3214.github.io/Password-Generator/
 
 ## License
 N/A
